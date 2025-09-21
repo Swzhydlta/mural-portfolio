@@ -5,7 +5,7 @@ export default function Home() {
       <nav className="w-full flex items-center justify-between p-4 ">
         <div> Daniel Mark Nel</div>
         <div className="space-x-4">
-          <a href="/contact" className="hover:underline">
+          <a href="/" className="hover:underline">
             contact
           </a>
         </div>

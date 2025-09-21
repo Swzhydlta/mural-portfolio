@@ -16,7 +16,7 @@ export default function Home() {
           <img src="aspen.jpg" alt="aspen" />
           <img src="bridge.jpg" alt="bridge" />
           <img src="caydon.jpg" alt="caydon" />
-          <img src="DSC_0095.jpg" alt="DSC_0095" />
+          <img src="benjoe.jpg" alt="benjoe" />
           <img src="field.jpg" alt="field" />
           <img src="lemons.jpg" alt="lemons" />
           <img src="nicci.jpg" alt="nicci" />

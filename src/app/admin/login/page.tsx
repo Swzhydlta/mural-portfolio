@@ -8,7 +8,12 @@ export default async function AdminLoginPage({
   return (
     <div className="max-w-sm mx-auto mt-24 px-4">
       <h1 className="text-xl mb-4">Admin login</h1>
-      {error && <p className="text-red-600 mb-4">Incorrect password.</p>}
+      {error === "rate_limited" && (
+        <p className="text-red-600 mb-4">Too many attempts. Try again later.</p>
+      )}
+      {error === "1" && (
+        <p className="text-red-600 mb-4">Incorrect password.</p>
+      )}
       <form
         action="/api/admin/login"
         method="post"

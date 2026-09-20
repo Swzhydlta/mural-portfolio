@@ -16,6 +16,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           "image/gif",
         ],
         addRandomSuffix: true,
+        maximumSizeInBytes: 20 * 1024 * 1024, // 20MB per photo
       }),
       // The DB row is written by the client via POST /api/admin/images once
       // upload() resolves, rather than here — this webhook callback needs a

@@ -21,6 +21,19 @@ async function main() {
     )
   `;
 
+  await sql`
+    CREATE TABLE IF NOT EXISTS login_attempts (
+      id SERIAL PRIMARY KEY,
+      ip TEXT NOT NULL,
+      attempted_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS login_attempts_ip_attempted_at_idx
+    ON login_attempts (ip, attempted_at)
+  `;
+
   console.log("Database tables ready.");
 }
 

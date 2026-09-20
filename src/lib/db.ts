@@ -100,3 +100,22 @@ export async function getImageById(id: number): Promise<ImageRecord | null> {
 export async function deleteImage(id: number): Promise<void> {
   await sql`DELETE FROM images WHERE id = ${id}`;
 }
+
+export async function countRecentLoginAttempts(
+  ip: string,
+  windowMinutes: number,
+): Promise<number> {
+  const since = new Date(Date.now() - windowMinutes * 60_000).toISOString();
+  const { rows } = await sql<{ count: number }>`
+    SELECT count(*)::int AS count
+    FROM login_attempts
+    WHERE ip = ${ip} AND attempted_at > ${since}
+  `;
+  return rows[0]?.count ?? 0;
+}
+
+export async function recordLoginAttempt(ip: string): Promise<void> {
+  await sql`INSERT INTO login_attempts (ip) VALUES (${ip})`;
+  // Opportunistic cleanup so this table doesn't grow unbounded.
+  await sql`DELETE FROM login_attempts WHERE attempted_at < now() - interval '1 day'`;
+}

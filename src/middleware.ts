@@ -3,7 +3,7 @@ import { ADMIN_SESSION_COOKIE, isValidSessionCookieValue } from "@/lib/auth";
 
 export const runtime = "nodejs";
 
-const PUBLIC_ADMIN_PATHS = new Set(["/admin/login", "/api/admin/login"]);
+const PUBLIC_ADMIN_PATHS = new Set(["/clouds/login", "/api/admin/login"]);
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -21,10 +21,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const loginUrl = new URL("/admin/login", request.url);
+  const loginUrl = new URL("/clouds/login", request.url);
   return NextResponse.redirect(loginUrl);
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  matcher: ["/clouds/:path*", "/api/admin/:path*"],
 };

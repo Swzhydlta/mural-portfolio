@@ -10,7 +10,7 @@ export default function AuthenticatedAdminLayout({
           <a href="/" className="hover:underline">
             home
           </a>
-          <a href="/admin" className="hover:underline">
+          <a href="/clouds" className="hover:underline">
             admin
           </a>
         </div>

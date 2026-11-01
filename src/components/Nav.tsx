@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WorkMenu } from "@/components/WorkMenu";
 import { getFolders } from "@/lib/db";
 
 export async function Nav() {
@@ -12,35 +13,18 @@ export async function Nav() {
   }
 
   return (
-    <nav className="w-full flex items-center justify-between p-4 border border-black">
+    <nav className="sticky top-0 z-20 bg-background w-full flex items-center justify-between p-4 border border-black">
       <Link href="/" className="cursor-pointer border border-black px-2 py-1">
         Daniel Mark Nel
       </Link>
       <div className="flex items-center space-x-4">
-        <div className="relative group">
-          <button
-            type="button"
-            className="hover:underline cursor-pointer border border-black px-2 py-1"
-          >
-            work
-          </button>
-          {folders.length > 0 && (
-            <div className="absolute right-0 top-full hidden group-hover:block bg-background border border-black min-w-32 z-10">
-              {folders.map((folder) => (
-                <Link
-                  key={folder.slug}
-                  href={`/work/${folder.slug}`}
-                  className="block px-4 py-2 hover:underline whitespace-nowrap"
-                >
-                  {folder.name}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-        <a href="/" className="hover:underline border border-black px-2 py-1">
-          contact
-        </a>
+        <WorkMenu folders={folders} />
+        <Link
+          href="/about"
+          className="hover:underline border border-black px-2 py-1"
+        >
+          about
+        </Link>
       </div>
     </nav>
   );

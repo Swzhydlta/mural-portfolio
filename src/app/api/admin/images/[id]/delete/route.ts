@@ -11,7 +11,7 @@ export async function POST(
 
   const image = await getImageById(imageId);
   if (!image) {
-    return NextResponse.redirect(new URL("/admin", request.url), {
+    return NextResponse.redirect(new URL("/clouds", request.url), {
       status: 303,
     });
   }
@@ -20,7 +20,7 @@ export async function POST(
   await deleteImage(imageId);
 
   const folder = await getFolderById(image.folderId);
-  const redirectPath = folder ? `/admin/${folder.slug}` : "/admin";
+  const redirectPath = folder ? `/clouds/${folder.slug}` : "/clouds";
   return NextResponse.redirect(new URL(redirectPath, request.url), {
     status: 303,
   });

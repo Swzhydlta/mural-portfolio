@@ -25,7 +25,7 @@ export async function POST(request: Request) {
   );
   if (recentAttempts >= RATE_LIMIT_MAX_ATTEMPTS) {
     return NextResponse.redirect(
-      new URL("/admin/login?error=rate_limited", request.url),
+      new URL("/clouds/login?error=rate_limited", request.url),
       { status: 303 },
     );
   }
@@ -36,12 +36,15 @@ export async function POST(request: Request) {
   await recordLoginAttempt(ip);
 
   if (!verifyPassword(password)) {
-    return NextResponse.redirect(new URL("/admin/login?error=1", request.url), {
-      status: 303,
-    });
+    return NextResponse.redirect(
+      new URL("/clouds/login?error=1", request.url),
+      {
+        status: 303,
+      },
+    );
   }
 
-  const response = NextResponse.redirect(new URL("/admin", request.url), {
+  const response = NextResponse.redirect(new URL("/clouds", request.url), {
     status: 303,
   });
   response.cookies.set(ADMIN_SESSION_COOKIE, createSessionCookieValue(), {

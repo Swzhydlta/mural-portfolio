@@ -17,7 +17,7 @@ export default async function WorkFolderPage({
     <div>
       <header>
         {folder.description && (
-          <p className="whitespace-pre-wrap max-w-2xl text-left text-sm px-4 py-6">
+          <p className="whitespace-pre-wrap max-w-2xl text-left text-sm px-4 py-6 leading-none">
             {folder.description}
           </p>
         )}

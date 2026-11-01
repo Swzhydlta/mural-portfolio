@@ -15,5 +15,7 @@ export async function POST(
   }
   await deleteFolder(folderId); // images cascade via FK
 
-  return NextResponse.redirect(new URL("/admin", request.url), { status: 303 });
+  return NextResponse.redirect(new URL("/clouds", request.url), {
+    status: 303,
+  });
 }

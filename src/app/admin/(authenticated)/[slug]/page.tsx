@@ -24,6 +24,30 @@ export default async function AdminFolderPage({
         <h1 className="text-xl mt-2">{folder.name}</h1>
       </div>
 
+      <form
+        action={`/api/admin/folders/${folder.id}/description`}
+        method="post"
+        className="flex flex-col gap-2"
+      >
+        <label htmlFor="description" className="text-lg">
+          Text
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          rows={5}
+          defaultValue={folder.description}
+          placeholder="Text shown at the top of this folder's page"
+          className="border border-foreground/20 px-3 py-2 bg-transparent"
+        />
+        <button
+          type="submit"
+          className="self-start border border-foreground/20 px-3 py-2 hover:underline cursor-pointer"
+        >
+          Save text
+        </button>
+      </form>
+
       <UploadForm folderId={folder.id} />
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">

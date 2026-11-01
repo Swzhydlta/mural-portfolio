@@ -12,15 +12,20 @@ export async function Nav() {
   }
 
   return (
-    <nav className="w-full flex items-center justify-between p-4">
-      <div>Daniel Mark Nel</div>
+    <nav className="w-full flex items-center justify-between p-4 border border-black">
+      <Link href="/" className="cursor-pointer border border-black px-2 py-1">
+        Daniel Mark Nel
+      </Link>
       <div className="flex items-center space-x-4">
         <div className="relative group">
-          <button type="button" className="hover:underline cursor-pointer">
+          <button
+            type="button"
+            className="hover:underline cursor-pointer border border-black px-2 py-1"
+          >
             work
           </button>
           {folders.length > 0 && (
-            <div className="absolute left-0 top-full hidden group-hover:block bg-background border border-foreground/10 min-w-32 z-10">
+            <div className="absolute right-0 top-full hidden group-hover:block bg-background border border-black min-w-32 z-10">
               {folders.map((folder) => (
                 <Link
                   key={folder.slug}
@@ -33,7 +38,7 @@ export async function Nav() {
             </div>
           )}
         </div>
-        <a href="/" className="hover:underline">
+        <a href="/" className="hover:underline border border-black px-2 py-1">
           contact
         </a>
       </div>

@@ -15,7 +15,13 @@ export default async function WorkFolderPage({
 
   return (
     <div>
-      <header></header>
+      <header>
+        {folder.description && (
+          <p className="whitespace-pre-wrap max-w-2xl text-left text-sm px-4 py-6">
+            {folder.description}
+          </p>
+        )}
+      </header>
       <main>
         <Gallery
           images={images.map((image) => ({

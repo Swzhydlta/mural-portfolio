@@ -11,6 +11,11 @@ async function main() {
   `;
 
   await sql`
+    ALTER TABLE folders
+    ADD COLUMN IF NOT EXISTS description TEXT NOT NULL DEFAULT ''
+  `;
+
+  await sql`
     CREATE TABLE IF NOT EXISTS images (
       id SERIAL PRIMARY KEY,
       folder_id INTEGER NOT NULL REFERENCES folders(id) ON DELETE CASCADE,

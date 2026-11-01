@@ -4,6 +4,7 @@ export type Folder = {
   id: number;
   slug: string;
   name: string;
+  description: string;
   createdAt: string;
 };
 
@@ -18,7 +19,7 @@ export type ImageRecord = {
 
 export async function getFolders(): Promise<Folder[]> {
   const { rows } = await sql<Folder>`
-    SELECT id, slug, name, created_at as "createdAt"
+    SELECT id, slug, name, description, created_at as "createdAt"
     FROM folders
     ORDER BY created_at ASC
   `;
@@ -27,7 +28,7 @@ export async function getFolders(): Promise<Folder[]> {
 
 export async function getFolderBySlug(slug: string): Promise<Folder | null> {
   const { rows } = await sql<Folder>`
-    SELECT id, slug, name, created_at as "createdAt"
+    SELECT id, slug, name, description, created_at as "createdAt"
     FROM folders
     WHERE slug = ${slug}
     LIMIT 1
@@ -37,7 +38,7 @@ export async function getFolderBySlug(slug: string): Promise<Folder | null> {
 
 export async function getFolderById(id: number): Promise<Folder | null> {
   const { rows } = await sql<Folder>`
-    SELECT id, slug, name, created_at as "createdAt"
+    SELECT id, slug, name, description, created_at as "createdAt"
     FROM folders
     WHERE id = ${id}
     LIMIT 1
@@ -52,9 +53,16 @@ export async function createFolder(
   const { rows } = await sql<Folder>`
     INSERT INTO folders (name, slug)
     VALUES (${name}, ${slug})
-    RETURNING id, slug, name, created_at as "createdAt"
+    RETURNING id, slug, name, description, created_at as "createdAt"
   `;
   return rows[0];
+}
+
+export async function updateFolderDescription(
+  id: number,
+  description: string,
+): Promise<void> {
+  await sql`UPDATE folders SET description = ${description} WHERE id = ${id}`;
 }
 
 export async function deleteFolder(id: number): Promise<void> {

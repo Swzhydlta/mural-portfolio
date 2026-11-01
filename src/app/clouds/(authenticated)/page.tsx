@@ -17,7 +17,7 @@ export default async function AdminDashboardPage() {
               key={folder.id}
               className="flex items-center justify-between border border-foreground/10 px-3 py-2"
             >
-              <Link href={`/admin/${folder.slug}`} className="hover:underline">
+              <Link href={`/clouds/${folder.slug}`} className="hover:underline">
                 {folder.name}
               </Link>
               <form

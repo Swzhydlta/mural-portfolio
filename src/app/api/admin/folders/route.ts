@@ -31,5 +31,7 @@ export async function POST(request: Request) {
     }
   }
 
-  return NextResponse.redirect(new URL("/admin", request.url), { status: 303 });
+  return NextResponse.redirect(new URL("/clouds", request.url), {
+    status: 303,
+  });
 }

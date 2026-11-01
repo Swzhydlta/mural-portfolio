@@ -15,7 +15,7 @@ export async function POST(
   const description = String(formData.get("description") ?? "").trim();
   await updateFolderDescription(folder.id, description);
 
-  return NextResponse.redirect(new URL(`/admin/${folder.slug}`, request.url), {
+  return NextResponse.redirect(new URL(`/clouds/${folder.slug}`, request.url), {
     status: 303,
   });
 }

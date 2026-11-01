@@ -18,7 +18,7 @@ export default async function AdminFolderPage({
   return (
     <div className="max-w-3xl mx-auto flex flex-col gap-8">
       <div>
-        <a href="/admin" className="hover:underline text-sm">
+        <a href="/clouds" className="hover:underline text-sm">
           &larr; all folders
         </a>
         <h1 className="text-xl mt-2">{folder.name}</h1>
